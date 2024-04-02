@@ -1,0 +1,13 @@
+spring:
+  # В проде используем переменные окружения для указания логинов, паролей и урлов
+  datasource:
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+        # в проде выключаем показ sql запросов
+        show_sql: false
+
