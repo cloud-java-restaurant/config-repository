@@ -13,3 +13,9 @@ external:
   menu-service-url: ${MENU_SERVICE_URL}
   # В проде увеличиваем таймаут, который будет использоваться при связи с Menu Service
   default-timeout: 5s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
