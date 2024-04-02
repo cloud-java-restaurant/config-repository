@@ -1,9 +1,9 @@
 spring:
   datasource:
     # В проде используем переменные окружения для указания логинов, паролей и урлов
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
-    url: ${DB_URL}
+    username: ${MENU_DB_USER}
+    password: ${MENU_DB_PASSWORD}
+    url: ${MENU_DB_URL}
   jpa:
     properties:
       hibernate:
