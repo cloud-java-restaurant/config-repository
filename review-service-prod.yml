@@ -1,9 +1,9 @@
 spring:
   # В проде используем переменные окружения для указания логинов, паролей и урлов
   datasource:
-    username: ${REVIEWS_DB_USER}
-    password: ${REVIEWS_DB_PASSWORD}
-    url: ${REVIEWS_DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
   jpa:
     hibernate:
       ddl-auto: validate
