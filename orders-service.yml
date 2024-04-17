@@ -27,6 +27,20 @@ spring:
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
     url: jdbc:postgresql://localhost:5432/orders_service_db
+  kafka:
+    bootstrap-servers: localhost:9097
+    consumer:
+      group-id: ${spring.application.name}
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      properties:
+        specific.avro.reader: true
+        schema.registry.url: http://localhost:8081
+      auto-offset-reset: earliest # for dev environment
+      enable-auto-commit: true
+
+kafkaprops:
+  order-dispatch-topic: v1.orders_dispatch
 
 external:
   # урл для связи с Menu Service
