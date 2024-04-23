@@ -13,7 +13,6 @@ spring:
     consumer:
       properties:
         schema.registry.url: ${SCHEMA_REGISTRY_URL}
-      auto-offset-reset: latest
 
 external:
   menu-service-url: ${MENU_SERVICE_URL}

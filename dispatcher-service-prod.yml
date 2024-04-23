@@ -4,7 +4,6 @@ spring:
     consumer:
       properties:
         schema.registry.url: ${SCHEMA_REGISTRY_URL}
-      auto-offset-reset: latest
     producer:
       properties:
         schema.registry.url: ${SCHEMA_REGISTRY_URL}

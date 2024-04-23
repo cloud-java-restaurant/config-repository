@@ -36,8 +36,10 @@ spring:
       properties:
         specific.avro.reader: true
         schema.registry.url: http://localhost:8081
-      auto-offset-reset: earliest # for dev environment
-      enable-auto-commit: true
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+    listener:
+      ack-mode: manual
 
 kafkaprops:
   order-dispatch-topic: v1.orders_dispatch
