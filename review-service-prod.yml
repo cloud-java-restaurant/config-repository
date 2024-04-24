@@ -8,6 +8,7 @@ spring:
     hibernate:
       ddl-auto: validate
     properties:
+      hibernate:
         # в проде выключаем показ sql запросов
         show_sql: false
 
