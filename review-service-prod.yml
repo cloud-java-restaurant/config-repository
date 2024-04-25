@@ -11,3 +11,5 @@ spring:
         # в проде выключаем показ sql запросов
         show_sql: false
 
+external:
+  discovery-service-url: ${DISCOVERY_SERVICE_URL}
