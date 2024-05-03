@@ -1,5 +1,4 @@
 server:
-  port: 8761
   shutdown: graceful
   netty:
     connection-timeout: 2s

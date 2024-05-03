@@ -1,5 +1,4 @@
 server:
-  port: 9092
   shutdown: graceful
   netty:
     # время ожидания установки TCP соединения с сервером

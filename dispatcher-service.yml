@@ -1,5 +1,4 @@
 server:
-  port: 9096
   shutdown: graceful
   tomcat:
     connection-timeout: 3s
