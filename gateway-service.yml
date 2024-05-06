@@ -34,7 +34,7 @@ spring:
             backoff:
               firstBackoff: 30ms
               maxBackoff: 300ms
-              factor: 1.2
+              factor: 2
               basedOnPreviousValue: false
       routes:
         - id: menu-service-route
