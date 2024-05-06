@@ -1,7 +1,7 @@
 server:
   shutdown: graceful
   netty:
-    connection-timeout: 5s
+    connection-timeout: 10s
     idle-timeout: 20s
 
 spring:
@@ -12,8 +12,8 @@ spring:
   cloud:
     gateway:
       httpclient:
-        connect-timeout: 8000
-        response-timeout: 8s
+        connect-timeout: 30000
+        response-timeout: 20s
       default-filters:
         - name: RequestRateLimiter
           args:
@@ -23,13 +23,13 @@ spring:
               requestedTokens: 1
         - name: Retry
           args:
-            retries: 3
+            retries: 5
             methods: GET
             series: SERVER_ERROR
             exceptions: java.io.IOException, java.util.concurrent.TimeoutException
             backoff:
-              firstBackoff: 100ms
-              maxBackoff: 2000ms
+              firstBackoff: 300ms
+              maxBackoff: 10000ms
               factor: 2
               basedOnPreviousValue: false
       routes:
@@ -67,10 +67,10 @@ spring:
                 name: menuAggregateServiceCircuitBreaker
   data:
     redis:
-      connect-timeout: 2s
+      connect-timeout: 10s
       host: ${external.redis-host}
       port: ${external.redis-port}
-      timeout: 5s
+      timeout: 10s
 
 
 resilience4j:
@@ -84,13 +84,13 @@ resilience4j:
         wait-duration-in-open-state:
           seconds: 10
         slow-call-duration-threshold:
-          seconds: 10s
+          seconds: 20
         minimum-number-of-calls: 15
   timelimiter:
     configs:
       default:
         timeout-duration:
-          seconds: 10
+          seconds: 30
 
 
 eureka:
