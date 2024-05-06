@@ -12,7 +12,7 @@ spring:
   cloud:
     gateway:
       httpclient:
-        connect-timeout: 30000
+        connect-timeout: 3000
         response-timeout: 20s
       default-filters:
         - name: RequestRateLimiter
@@ -29,7 +29,7 @@ spring:
             exceptions: java.io.IOException, java.util.concurrent.TimeoutException
             backoff:
               firstBackoff: 300ms
-              maxBackoff: 10000ms
+              maxBackoff: 3000ms
               factor: 2
               basedOnPreviousValue: false
       routes:
@@ -81,17 +81,13 @@ resilience4j:
         sliding-window-size: 30
         permitted-number-of-calls-in-half-open-state: 5
         failure-rate-threshold: 60
-        wait-duration-in-open-state:
-          seconds: 10
-        slow-call-duration-threshold:
-          seconds: 20
+        wait-duration-in-open-state: 10s
+        slow-call-duration-threshold: 10s
         minimum-number-of-calls: 15
   timelimiter:
     configs:
       default:
-        timeout-duration:
-          seconds: 30
-
+        timeout-duration: 10s
 
 eureka:
   client:
