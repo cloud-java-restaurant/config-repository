@@ -84,6 +84,15 @@ resilience4j:
         wait-duration-in-open-state: 10s
         slow-call-duration-threshold: 10s
         minimum-number-of-calls: 15
+    instances:
+      menuServiceCircuitBreaker:
+        base-config: default
+      ordersServiceCircuitBreaker:
+        base-config: default
+      reviewServiceCircuitBreaker:
+        base-config: default
+      menuAggregateServiceCircuitBreaker:
+        base-config: default
   timelimiter:
     configs:
       default:
