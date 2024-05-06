@@ -1,0 +1,106 @@
+server:
+  shutdown: graceful
+  netty:
+    connection-timeout: 3s
+    idle-timeout: 20s
+
+spring:
+  application:
+    name: gateway-service
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 2000
+        response-timeout: 5s
+        pool:
+          type: elastic
+          max-idle-time: 15s
+          max-life-time: 60s
+      default-filters:
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter:
+              replenishRate: 3
+              burstCapacity: 10
+              requestedTokens: 1
+        - name: Retry
+          args:
+            retries: 3
+            methods: GET
+            series: SERVER_ERROR
+            exceptions: java.io.IOException, java.util.concurrent.TimeoutException
+            backoff:
+              firstBackoff: 30ms
+              maxBackoff: 300ms
+              factor: 1.2
+              basedOnPreviousValue: false
+      routes:
+        - id: menu-service-route
+          uri: lb://menu-service
+          predicates:
+            - Path=/v1/menu-items/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: menuServiceCircuitBreaker
+        - id: orders-service-route
+          uri: lb://orders-service
+          predicates:
+            - Path=/v1/menu-orders/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: ordersServiceCircuitBreaker
+        - id: review-service-route
+          uri: lb://review-service
+          predicates:
+            - Path=/v1/reviews/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: reviewServiceCircuitBreaker
+        - id: menu-aggregate-service-route
+          uri: lb://aggregate-service
+          predicates:
+            - Path=/v1/menu-aggregate/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: menuAggregateServiceCircuitBreaker
+
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-type: time_based
+        sliding-window-size: 30
+        permitted-number-of-calls-in-half-open-state: 5
+        failure-rate-threshold: 60
+        wait-duration-in-open-state:
+          seconds: 10
+        slow-call-duration-threshold:
+          seconds: 4s
+        minimum-number-of-calls: 15
+  timelimiter:
+    configs:
+      default:
+        timeout-duration:
+          seconds: 5
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${external.discovery-service-url}
+    registry-fetch-interval-seconds: 5
+    initial-instance-info-replication-interval-seconds: 5
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 5
+    prefer-ip-address: true
+
+external:
+  discovery-service-url: http://localhost:8761/eureka/
