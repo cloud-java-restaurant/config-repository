@@ -1,2 +1,3 @@
 external:
   discovery-service-url: ${DISCOVERY_SERVICE_URL}
+  redis-host: ${REDIS_HOST}
