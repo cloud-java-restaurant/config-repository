@@ -1,7 +1,7 @@
 server:
   shutdown: graceful
   netty:
-    connection-timeout: 4s
+    connection-timeout: 5s
     idle-timeout: 20s
 
 spring:
@@ -11,6 +11,9 @@ spring:
     timeout-per-shutdown-phase: 30s
   cloud:
     gateway:
+      httpclient:
+        connect-timeout: 8000
+        response-timeout: 8s
       default-filters:
         - name: RequestRateLimiter
           args:
@@ -25,8 +28,8 @@ spring:
             series: SERVER_ERROR
             exceptions: java.io.IOException, java.util.concurrent.TimeoutException
             backoff:
-              firstBackoff: 50ms
-              maxBackoff: 1000ms
+              firstBackoff: 100ms
+              maxBackoff: 2000ms
               factor: 2
               basedOnPreviousValue: false
       routes:
@@ -67,7 +70,7 @@ spring:
       connect-timeout: 2s
       host: ${external.redis-host}
       port: ${external.redis-port}
-      timeout: 3s
+      timeout: 5s
 
 
 resilience4j:
@@ -81,13 +84,13 @@ resilience4j:
         wait-duration-in-open-state:
           seconds: 10
         slow-call-duration-threshold:
-          seconds: 4s
+          seconds: 10s
         minimum-number-of-calls: 15
   timelimiter:
     configs:
       default:
         timeout-duration:
-          seconds: 6
+          seconds: 10
 
 
 eureka:
@@ -105,3 +108,12 @@ external:
   discovery-service-url: http://localhost:8761/eureka/
   redis-host: localhost
   redis-port: 6379
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, gateway
