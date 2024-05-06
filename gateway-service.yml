@@ -1,7 +1,7 @@
 server:
   shutdown: graceful
   netty:
-    connection-timeout: 10s
+    connection-timeout: 3s
     idle-timeout: 20s
 
 spring:
@@ -18,8 +18,8 @@ spring:
         - name: RequestRateLimiter
           args:
             redis-rate-limiter:
-              replenishRate: 100
-              burstCapacity: 200
+              replenishRate: 10
+              burstCapacity: 20
               requestedTokens: 1
         - name: Retry
           args:
@@ -67,10 +67,10 @@ spring:
                 name: menuAggregateServiceCircuitBreaker
   data:
     redis:
-      connect-timeout: 10s
+      connect-timeout: 3s
       host: ${external.redis-host}
       port: ${external.redis-port}
-      timeout: 10s
+      timeout: 3s
 
 
 resilience4j:
@@ -96,7 +96,7 @@ resilience4j:
   timelimiter:
     configs:
       default:
-        timeout-duration: 10s
+        timeout-duration: 5s
 
 eureka:
   client:
