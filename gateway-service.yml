@@ -32,8 +32,8 @@ spring:
             series: SERVER_ERROR
             exceptions: java.io.IOException, java.util.concurrent.TimeoutException
             backoff:
-              firstBackoff: 30ms
-              maxBackoff: 300ms
+              firstBackoff: 50ms
+              maxBackoff: 1000ms
               factor: 2
               basedOnPreviousValue: false
       routes:
