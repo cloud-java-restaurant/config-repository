@@ -32,6 +32,7 @@ external:
   retry-backoff: 100ms
   retry-count: 5
   retry-jitter: 0.75
+  zipkin-endpoint: http://localhost:9411/api/v2/spans
 
 resilience4j:
   circuitbreaker:
@@ -93,3 +94,18 @@ api:
     notFound: Блюдо по указанному идентификатору не найдено.
     badRequest: Ответ не был сформирован из-за ошибки во входящих параметрах. Подробнее в сообщении об ошибке.
     serviceUnavailable: Ответ не был сформирован из-за недоступности одной из внешних систем. Подробнее в сообщении об ошибке.
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+    propagation:
+      type: b3
+  zipkin:
+    tracing:
+      endpoint: ${external.zipkin-endpoint}

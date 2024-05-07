@@ -95,3 +95,18 @@ api:
     submitInternalError: Заказ не был сформирован из-за ошибки на сервере. Подробнее в сообщении об ошибке.
     getOk: Список заказов пользователя сформирован.
     getBadRequest: Не удалось сформировать список заказов пользователя из-за ошибки в параметрах запроса.
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+    propagation:
+      type: b3
+  zipkin:
+    tracing:
+      endpoint: ${external.zipkin-endpoint}

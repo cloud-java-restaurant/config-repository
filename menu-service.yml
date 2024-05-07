@@ -120,3 +120,18 @@ api:
     getListBadRequest: Список блюд невозможно сформировать, так как в запросе некорректные параметры.
     getMenuInfoBadRequest: Информацию о блюдах невозможно сформировать, так как в запросе некорректные параметры (список названий пуст).
     getMenuInfoOk: Информация о блюдах успешно сформирована.
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+    propagation:
+      type: b3
+  zipkin:
+    tracing:
+      endpoint: ${external.zipkin-endpoint}

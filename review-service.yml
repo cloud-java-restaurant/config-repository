@@ -122,3 +122,18 @@ api:
     getMenuReviewsBadRequest: Список отзывов к блюду невозможно сформировать из-за ошибок валидации параметров запроса. Подробнее в сообщении об ошибке.
     getRatingsOk: Список рейтингов и средних оценок блюд сформирован успешно.
     getRatingsBadRequest: Список рейтингов и средних оценок блюд невозможно сформировать из-за ошибок валидации параметров запроса. Подробнее в сообщении об ошибке.
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+    propagation:
+      type: b3
+  zipkin:
+    tracing:
+      endpoint: ${external.zipkin-endpoint}

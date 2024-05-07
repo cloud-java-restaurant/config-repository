@@ -3,9 +3,4 @@ external:
   discovery-service-url: ${DISCOVERY_SERVICE_URL}
   # в проде увеличиваем таймаут
   default-timeout: 5s
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh
+  zipkin-endpoint: ${ZIPKIN_URL}
