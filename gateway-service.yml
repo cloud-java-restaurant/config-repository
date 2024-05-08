@@ -13,7 +13,7 @@ spring:
     gateway:
       httpclient:
         connect-timeout: 3000
-        response-timeout: 20s
+        response-timeout: 5s
       default-filters:
         - name: RequestRateLimiter
           args:
