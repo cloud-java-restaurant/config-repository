@@ -82,7 +82,7 @@ resilience4j:
         permitted-number-of-calls-in-half-open-state: 5
         failure-rate-threshold: 60
         wait-duration-in-open-state: 10s
-        slow-call-duration-threshold: 10s
+        slow-call-duration-threshold: 5s
         minimum-number-of-calls: 15
     instances:
       menuServiceCircuitBreaker:
