@@ -119,3 +119,6 @@ management:
   zipkin:
     tracing:
       endpoint: ${external.zipkin-endpoint}
+
+keycloak:
+  client-id: cloud-java-gateway
