@@ -19,3 +19,5 @@ external:
   # В проде увеличиваем таймаут, который будет использоваться при связи с Menu Service
   default-timeout: 5s
   zipkin-endpoint: ${ZIPKIN_URL}
+  keycloak-url: ${KEYCLOAK_URL}
+  jwk-set-url: ${JWK_SET_URL}

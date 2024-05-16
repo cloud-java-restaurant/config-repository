@@ -39,6 +39,12 @@ spring:
       enable-auto-commit: false
     listener:
       ack-mode: manual
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${external.keycloak-url}
+          jwk-set-uri: ${external.jwk-set-url}
 
 eureka:
   client:
@@ -72,6 +78,8 @@ external:
   # в Menu Service.
   retry-jitter: 0.75
   zipkin-endpoint: http://localhost:9411/api/v2/spans
+  keycloak-url: http://keycloak:8080/realms/cloud-java
+  jwk-set-url: http://keycloak:8080/realms/cloud-java/protocol/openid-connect/certs
 
 springdoc:
   api-docs:
