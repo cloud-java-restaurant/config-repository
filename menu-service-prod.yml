@@ -13,5 +13,3 @@ spring:
 external:
   discovery-service-url: ${DISCOVERY_SERVICE_URL}
   zipkin-endpoint: ${ZIPKIN_URL}
-  keycloak-url: ${KEYCLOAK_URL}
-  jwk-set-url: ${JWK_SET_URL}
