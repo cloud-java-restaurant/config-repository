@@ -4,3 +4,4 @@ external:
   # в проде увеличиваем таймаут
   default-timeout: 5s
   zipkin-endpoint: ${ZIPKIN_URL}
+  loki-url: ${LOKI_URL}
