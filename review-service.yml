@@ -66,6 +66,7 @@ eureka:
 external:
   discovery-service-url: http://localhost:8761/eureka/
   zipkin-endpoint: http://localhost:9411/api/v2/spans
+  loki-url: http://localhost:3100/loki/api/v1/push
 
 springdoc:
   api-docs:
@@ -138,3 +139,21 @@ management:
   zipkin:
     tracing:
       endpoint: ${external.zipkin-endpoint}
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        all: true
+        http.server.requests: true
+  prometheus:
+    metrics:
+      export:
+        step: 5s
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+    os:
+      enabled: true
