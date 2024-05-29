@@ -39,3 +39,30 @@ kafkaprops:
   replication-factor: 1
   partitions-count: 3
   nack-sleep-duration: 100ms
+
+external:
+  loki-url: http://localhost:3100/loki/api/v1/push
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        all: true
+        http.server.requests: true
+  prometheus:
+    metrics:
+      export:
+        step: 5s
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+    os:
+      enabled: true
