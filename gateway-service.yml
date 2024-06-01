@@ -148,10 +148,10 @@ management:
       percentiles-histogram:
         all: true
         http.server.requests: true
-  prometheus:
-    metrics:
-      export:
-        step: 5s
+#  prometheus:
+#    metrics:
+#      export:
+#        step: 5s
 #  info:
 #    env:
 #      enabled: true
