@@ -152,13 +152,13 @@ management:
     metrics:
       export:
         step: 5s
-  info:
-    env:
-      enabled: true
-    java:
-      enabled: true
-    os:
-      enabled: true
+#  info:
+#    env:
+#      enabled: true
+#    java:
+#      enabled: true
+#    os:
+#      enabled: true
 
 logging:
   pattern:
