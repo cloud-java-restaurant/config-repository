@@ -54,7 +54,6 @@ management:
     distribution:
       percentiles-histogram:
         all: true
-        http.server.requests: true
 
 logging:
   pattern:
