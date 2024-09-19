@@ -28,7 +28,7 @@ spring:
   datasource:
     username: user
     password: password
-    url: jdbc:postgresql://localhost:5433/review_service_db
+    url: jdbc:postgresql://localhost:15433/review_service_db
     hikari:
       # таймаут на получение соединения из пула соединений
       connection-timeout: 2000 # в миллисекундах
