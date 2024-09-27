@@ -35,6 +35,25 @@ external:
   zipkin-endpoint: http://localhost:9411/api/v2/spans
 
 resilience4j:
+  retry:
+    configs:
+      default:
+        max-attempts: ${external.retry-count} # Максимальное количество попыток выполнения операции
+        wait-duration: # Продолжительность ожидания между попытками.
+          seconds: ${external.retry-backoff}
+        enable-exponential-backoff: true # Включаем экспоненциальное увеличения времени ожидания между попытками.
+        exponential-backoff-multiplier: 2 # Множитель экспоненциального увеличения времени ожидания.
+        enable-randomized-wait: true #  Включаем случайную задержку между попытками.
+        randomized-wait-factor: ${external.retry-jitter} # Это означает, что фактическое время ожидания будет варьироваться на retry-jitter% от исходного значения.
+        retry-exceptions: # Список исключений, при возникновении которых будут выполнены повторные попытки.
+          - ru.javaops.cloudjava.aggregateservice.exception.MenuAggregateException
+        ignore-exceptions:
+          - io.github.resilience4j.circuitbreaker.CallNotPermittedException
+    instances:
+      menuBackend:
+        base-config: default
+      reviewBackend:
+        base-config: default
   circuitbreaker:
     configs:
       default:
@@ -53,11 +72,12 @@ resilience4j:
 
     instances:
       # Определяем CircuitBreaker, который будет использоваться в MenuClient
-      menuCircuitBreaker:
+      menuBackend:
         base-config: default
       # Определяем CircuitBreaker, который будет использоваться в ReviewsClient
-      reviewCircuitBreaker:
+      reviewBackend:
         base-config: default
+
 
 springdoc:
   api-docs:
