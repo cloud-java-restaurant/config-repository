@@ -44,6 +44,7 @@ spring:
       # более подробно тут: https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
       maximum-pool-size: 12
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: validate
     properties:
