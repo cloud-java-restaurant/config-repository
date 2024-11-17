@@ -1,4 +1,5 @@
 server:
+  port: 9099
   shutdown: graceful
   netty:
     connection-timeout: 3s
