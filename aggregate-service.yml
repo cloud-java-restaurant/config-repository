@@ -1,11 +1,20 @@
 server:
   port: 9094
   shutdown: graceful
-  netty:
-    connection-timeout: 3s
-    idle-timeout: 20s
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 20s
+    threads:
+      max: 20000
+      min-spare: 100
+    accept-count: 1000
 
 spring:
+  main:
+    keep-alive: true
+  threads:
+    virtual:
+      enabled: true
   application:
     name: aggregate-service
   lifecycle:
@@ -29,7 +38,7 @@ external:
   menu-item-path: "/v1/menu-items"
   menu-reviews-path: "/v1/reviews/menu-item"
   menu-ratings-path: "/v1/reviews/ratings"
-  default-timeout: 2s
+  default-read-timeout: 2s
   retry-backoff: 100ms
   retry-count: 5
   retry-jitter: 0.75
