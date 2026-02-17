@@ -4,11 +4,6 @@ server:
   tomcat:
     connection-timeout: 2s
     keep-alive-timeout: 20s
-    threads:
-      max: 20000
-      min-spare: 100
-    accept-count: 1000
-
 spring:
   main:
     keep-alive: true

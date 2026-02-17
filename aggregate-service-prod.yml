@@ -2,6 +2,6 @@ external:
   # В проде используем переменные окружения для указания логинов, паролей и урлов
   discovery-service-url: ${DISCOVERY_SERVICE_URL}
   # в проде увеличиваем таймаут
-  default-timeout: 5s
+  default-read-timeout: 5s
   zipkin-endpoint: ${ZIPKIN_URL}
   loki-url: ${LOKI_URL}
