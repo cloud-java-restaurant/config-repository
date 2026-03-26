@@ -12,7 +12,8 @@ spring:
 
 external:
   discovery-service-url: ${DISCOVERY_SERVICE_URL}
-  # В проде увеличиваем таймаут, который будет использоваться при связи с Menu Service
-  default-read-timeout: 5s
   zipkin-endpoint: ${ZIPKIN_URL}
   loki-url: ${LOKI_URL}
+  menu:
+    rest-client:
+      read-timeout: 2s
