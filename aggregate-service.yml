@@ -39,6 +39,7 @@ external:
       read-timeout: 2s
       max-connections-per-route: 200
       max-connections-total: 200
+      inactivity-validation-period: 2s
     menu-item-path: "/v1/menu-items"
   review:
     rest-client:
@@ -46,6 +47,7 @@ external:
       read-timeout: 2s
       max-connections-per-route: 200
       max-connections-total: 200
+      inactivity-validation-period: 2s
     menu-reviews-path: "/v1/reviews/menu-item"
     menu-ratings-path: "/v1/reviews/ratings"
 
